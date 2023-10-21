@@ -1,0 +1,10 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+.bannerImg {
+    width: 100%;
+    height: auto;
+    margin-top: 20px;
+}

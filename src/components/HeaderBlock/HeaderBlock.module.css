@@ -1,0 +1,28 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Mulish, sans-serif;
+}
+.main {
+    border-bottom: 1px solid gray;
+}
+.header {
+    width: 1200px;
+    height: 79px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.header a {
+    text-decoration: none;
+}
+.headerMenuText {
+    color: #2a2828;
+    font-size: 22px;
+    font-weight: 300;
+}
+.headerMenuText:hover {
+    color: #0090d0;
+}
