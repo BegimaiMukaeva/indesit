@@ -11,9 +11,9 @@ const MainPage = () => {
         <div>
             <HeaderBlock />
             <MainPageBanner />
-            <ServiceBlock />
             <CategoryText />
             <CategoriesBlock />
+            <ServiceBlock />
             <FooterBlock />
         </div>
     );

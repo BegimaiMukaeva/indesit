@@ -1,5 +1,5 @@
 .main {
-    border-top: 1px solid gray;
+    /*border-top: 1px solid gray;*/
     margin: 15px 0;
 }
 .categoryText {
@@ -12,6 +12,6 @@
 }
 .categoryText h4 {
     color: #2a2828;
-    font-size: 25px;
-    font-weight: 400;
+    font-size: 28px;
+    font-weight: 600;
 }
