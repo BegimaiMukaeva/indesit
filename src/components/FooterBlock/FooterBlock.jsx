@@ -21,7 +21,7 @@ const FooterBlock = () => {
                 <a href="/">
                     <img className={styles.instagramImg} src={instagramLogo} alt=""/>
                 </a>
-                <Link to=''>
+                <Link to='/admin-authorization'>
                     <img className={styles.instagramImg} src={adminImg} alt=""/>
                 </Link>
             </div>
