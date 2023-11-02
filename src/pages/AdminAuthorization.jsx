@@ -1,73 +1,70 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import styles from '../styles/AdminAuthorization.module.css';
+import { useNavigate } from 'react-router-dom';
 
 const AdminAuthorization = () => {
-    const [username, setUsername] = useState('');
-  const [email, setEmail] = useState('');
+  const navigate = useNavigate();
+  const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [errors, setErrors] = useState({});
+  const [tokens, setTokens] = useState(null);
+  const [error, setError] = useState('');
 
-  const validateEmail = (email) => {
-    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return regex.test(email);
-  };
+  const isFormValid = () => username && password;
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
+    if (!isFormValid()) {
+      setError('Имя пользователя и пароль обязательны');
+      return;
+    }
 
-    let validationErrors = {};
-    if (!username) validationErrors.username = "Имя пользователя обязательно";
-    if (!email) validationErrors.email = "Email обязателен";
-    if (!validateEmail(email)) validationErrors.email = "Email недействителен";
-    if (!password) validationErrors.password = "Пароль обязателен";
+    try {
+      const response = await axios.post('https://www.kunasyl-backender.org.kg/login/', {
+        username,
+        password,
+      });
 
-    setErrors(validationErrors);
-
-    if (Object.keys(validationErrors).length === 0) {
-      alert('Форма отправлена успешно!');
+      setTokens(response.data.tokens);
+      setError('');
+      navigate('/admin-page');
+    } catch (err) {
+      if (err.response) {
+        setError(err.response.data.error || 'Invalid credential, try again');
+      } else {
+        setError('Не удалось выполнить запрос к серверу');
+      }
     }
   };
 
-  const isFormValid = () => {
-    return username && validateEmail(email) && password && Object.keys(errors).length === 0;
-  };
-    return (
-        <div>
-            <div className={styles.authPage}>
-              <h2>Страница авторизации</h2>
-              <form onSubmit={handleSubmit}>
-                <div className={styles.formGroup}>
-                  <label>Имя пользователя:</label>
-                  <input
-                    type="text"
-                    value={username}
-                    onChange={(e) => setUsername(e.target.value)}
-                  />
-                  {errors.username && <span className="error">{errors.username}</span>}
-                </div>
-                <div className={styles.formGroup}>
-                  <label>Email:</label>
-                  <input
-                    type="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                  />
-                  {errors.email && <span className="error">{errors.email}</span>}
-                </div>
-                <div className={styles.formGroup}>
-                  <label>Пароль:</label>
-                  <input
-                    type="password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                  />
-                  {errors.password && <span className={styles.error}>{errors.password}</span>}
-                </div>
-                <button className={styles.adminAuthorizationButton} type="submit" disabled={!isFormValid()}>Далее</button>
-              </form>
-            </div>
+  return (
+    <div className={styles.authPage}>
+      <h2>Страница авторизации</h2>
+      {error && <p className={styles.error}>{error}</p>}
+      <form onSubmit={handleSubmit}>
+        <div className={styles.formGroup}>
+          <label>Имя пользователя:</label>
+          <input
+            type="text"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+          />
         </div>
-    );
+        <div className={styles.formGroup}>
+          <label>Пароль:</label>
+          <input
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+        </div>
+        <button className={styles.adminAuthorizationButton} type="submit" disabled={!isFormValid()}>
+          Далее
+        </button>
+      </form>
+      {tokens && <div>Вы успешно авторизованы</div>}
+    </div>
+  );
 };
 
 export default AdminAuthorization;
