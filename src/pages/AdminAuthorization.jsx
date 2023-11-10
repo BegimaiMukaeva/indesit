@@ -39,7 +39,7 @@ const AdminAuthorization = () => {
 
   return (
     <div className={styles.authPage}>
-      <h2>Страница авторизации</h2>
+      <h2 className={styles.authPageTitle}>Страница авторизации</h2>
       {error && <p className={styles.error}>{error}</p>}
       <form onSubmit={handleSubmit}>
         <div className={styles.formGroup}>

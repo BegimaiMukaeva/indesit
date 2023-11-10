@@ -5,12 +5,18 @@ footer {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: rgba(0, 144, 208, 0.68);
+    background-color: #222428;
 }
 .logoHeader {
     margin: 0 260px;
 }
+.indesitLogoFooter {
+    width: 150px;
+}
 .instagramImg {
     width: 30px;
     margin-left: 12px;
+}
+.titleFooter {
+    color: #ffffff;
 }

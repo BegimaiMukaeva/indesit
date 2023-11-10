@@ -6,19 +6,31 @@
 }
 
 .formGroup {
-  margin-bottom: 15px;
+  margin-bottom: 25px;
   text-align: left;
 }
-
+.authPageTitle {
+    margin: 25px 0;
+}
 .formGroup label {
-  display: block;
-  margin-bottom: 5px;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 16px;
+    color: #C1C1C3;
 }
 
 .formGroup input {
-  width: 100%;
-  padding: 8px;
-  font-size: 16px;
+    width: 100%;
+    height: 53px;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: none;
+    border-radius: 10px;
+    background: #EDEDED;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 18px;
+    outline: none;
 }
 
 .error {
@@ -30,14 +42,16 @@
 
 .adminAuthorizationButton {
     width: 100%;
-  padding: 10px 15px;
-  font-size: 18px;
-  cursor: pointer;
-  background-color: rgba(0, 144, 208, 0.68);
-  color: white;
-  border: none;
-  border-radius: 5px;
-  margin-top: 20px;
+    height: 54px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 18px;
+    padding: 16px;
+    border-radius: 6px;
+    background-color: rgba(0, 144, 208, 0.68);
+    color: white;
   transition: background-color 0.3s;
 }
 
